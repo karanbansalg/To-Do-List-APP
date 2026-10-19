@@ -1,61 +1,54 @@
-let task = document.querySelector('#task')
-const taskBtn = document.querySelector(".taskBtn")
-const taskItem = document.querySelector('.taskItem')
-const textCont = document.querySelector('.textContent')
-const main = document.querySelector('.main')
-const delBtn = document.querySelector('.delBtn')
-const taskCounter = document.querySelector('.taskCounter')
-let completionCounter = document.querySelector('.completionCounter')
-const checkbox = document.querySelector('.checkbox')
-let ul = document.querySelector('.ul')
+const taskInput = document.querySelector("#task");
+const taskButton = document.querySelector(".taskBtn");
+const taskList = document.querySelector(".ul");
+const taskCounter = document.querySelector(".taskCounter");
+const completionCounter = document.querySelector(".completionCounter");
 
-let key = ""
+function updateCounters() {
+  const tasks = taskList.querySelectorAll(".taskItem");
+  const completedTasks = taskList.querySelectorAll(
+    ".taskItem .checkbox:checked",
+  );
 
-task.addEventListener('',(e)=>{    
-    console.log(task.value);
-    key = task.value   
-})
-let taskText = ""
+  taskCounter.textContent = tasks.length;
+  completionCounter.textContent = completedTasks.length;
+}
+
 function addNewTaskItem(text) {
-    console.log(text);
-  const newTaskItem = document.createElement("li");
-  newTaskItem.className =
+  const taskItem = document.createElement("li");
+  taskItem.className =
     "taskItem rounded-[10px] flex bg-white items-center justify-around h-[50px] w-[100%]";
 
-  newTaskItem.innerHTML = `
+  taskItem.innerHTML = `
     <input class="checkbox cursor-pointer" type="checkbox">
     <div class="textContent"></div>
     <button class="delBtn cursor-pointer bg-red-500 h-[30px] w-[60px] rounded-sm text-white">
       delete
     </button>
   `;
-  newTaskItem.querySelector(".textContent").textContent = text;
-  ul.appendChild(newTaskItem);
-
+  taskItem.querySelector(".textContent").textContent = text;
+  taskList.appendChild(taskItem);
+  updateCounters();
 }
 
-taskBtn.addEventListener('click',()=>{
-    taskText = task.value.trim()
+taskButton.addEventListener("click", () => {
+  const taskText = taskInput.value.trim();
 
-    if(taskText !==""){
+  if (taskText !== "") {
+    addNewTaskItem(taskText);
+    taskInput.value = "";
+  }
+});
 
-        textCont.textContent = taskText
-            addNewTaskItem(taskText)
-            task.value = ""
-            key = ""   
-    }
-})
+taskList.addEventListener("change", (event) => {
+  if (event.target.matches(".checkbox")) {
+    updateCounters();
+  }
+});
 
-let tasks = 0
-let completeTasks = 0
-
-ul.addEventListener('click',(e)=>{
-    console.log(e.target);
-    if(e.target.matches('.delBtn')){
-      e.target.closest('.taskItem').remove()     
-    } else if(e.target.matches('.checkbox')){
-      console.log(e.target.closest(''));
-    }
-})
-
-
+taskList.addEventListener("click", (event) => {
+  if (event.target.matches(".delBtn")) {
+    event.target.closest(".taskItem").remove();
+    updateCounters();
+  }
+});
