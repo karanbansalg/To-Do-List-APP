@@ -67,7 +67,7 @@ taskList.addEventListener("change", (e) => {
   if (!e.target.matches(".checkbox") || !e.target.checked) return; {
     const taskItem = e.target.closest(".taskItem");
     const text = taskItem.querySelector(".textContent").textContent;
-
+    taskItem.remove()
     addProgress(text);
   }
 });
@@ -75,7 +75,8 @@ taskList.addEventListener("change", (e) => {
 taskList2.addEventListener("change", (e) => {
   if (!e.target.matches(".checkbox") || !e.target.checked) return; {
     const taskItem = e.target.closest(".taskItem");
-    const text = taskItem.querySelector(".textContent2").textContent;  
+    const text = taskItem.querySelector(".textContent2").textContent; 
+    taskItem.remove() 
     addCompletedTask(text);
   }
 });
