@@ -8,24 +8,31 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
+     <div class="section1 w-[85%]">
+                <input id="task" class="bg-white " type="text" placeholder="What needs to be done?">
+                <button class="taskBtn bg-purple-500 rounded-sm text-white cursor-pointer">Add Task</button>
+                </div>
     <div class="container">
-        <div class="inside">
+        <div class="to-do">
             <div class="header ">
                 <h1 class="font-bold text-4xl">My Tasks</h1><br>
                 <p class="text-gray-500">Stay organised and productive.</p>
             </div>
             <div class="main">
-                <div class="section1">
-                <input id="task" class="bg-white" type="text" placeholder="What needs to be done?">
-                <button class="taskBtn bg-purple-500 rounded-sm text-white cursor-pointer">Add Task</button>
-                </div>
                 <ul class="ul">
                 </ul>
-            </div>
-            <div class="footer ">
-                <p class="text-gray-500"><span class="taskCounter">0</span> tasks</p>
-                <p class="text-gray-500"><span class="completionCounter">0</span> completed</p>
-            </div>
+            </div>        
+        </div>
+        <div class="progress">
+          <h1 class="font-bold text-4xl">Tasks in progress...</h1>
+          <div class="main2"><ul class="ul2">
+                </ul></div>
+        </div>
+        <div class="completed">
+          <h1 class="font-bold text-4xl">Tasks Completed</h1>
+          <div class="main3"><ul class="ul3">
+
+          </ul></div>
         </div>
     </div>
     <script src="app.js" ></script>
